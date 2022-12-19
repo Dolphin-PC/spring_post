@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://my-rds.cgxtdz3dn3oc.ap-northeast-2.rds.amazonaws.com:3306/init
+    username: pcy
+    password: qwer1234!
