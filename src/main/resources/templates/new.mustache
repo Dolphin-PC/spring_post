@@ -1,0 +1,41 @@
+{{>layout/header}}
+<div class="container">
+    <h1>새글 등록하기</h1>
+
+    <div class="col-12">
+        <label for="title">제목</label>
+        <input type="text" id="title">
+    </div>
+
+    <div class="col-12">
+        <label for="content">내용</label>
+        <textarea id="content" cols="30" rows="10"></textarea>
+    </div>
+
+    <button id="addPost">등록</button>
+</div>
+
+<script>
+    const $title = $("#title");
+    const $content = $("#content");
+
+
+    $('#addPost').click(() => {
+        if( !$title.val() || !$content.val() ) return alert("입력해주세요!");
+        let prmObj = { title: $title.val(), content: $content.val(), author: 'dolphin' };
+        $.ajax({
+            url: '/api/v1/post',
+            type: 'POST',
+            contentType: 'application/json',
+            data : JSON.stringify(prmObj),
+        }).done(res => {
+            alert('저장 완료');
+            location.href = '/'
+        }).fail(err => {
+            console.error(err);
+        });
+    })
+</script>
+
+
+{{>layout/footer}}

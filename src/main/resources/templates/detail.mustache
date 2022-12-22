@@ -1,0 +1,40 @@
+{{>layout/header}}
+
+<div class="container">
+    <h1>게시글 상세</h1>
+
+    <div class="col-12">
+        <label for="title">제목</label>
+        <input type="text" id="title" value="{{post.title}}">
+    </div>
+
+
+    <div class="col-12">
+        <label for="content">내용</label>
+        <textarea id="content" cols="30" rows="10">{{post.content}}</textarea>
+    </div>
+
+    <button id="updatePost">수정</button>
+</div>
+
+<script>
+    $('#updatePost').click((e) => {
+        let prmObj = {
+            title : $("#title").val(),
+            content : $("#content").val()
+        };
+
+        $.ajax({
+            type:'PUT',
+            url: '/api/v1/post/' + {{post.id}},
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data : JSON.stringify(prmObj),
+        }).done(res => {
+            alert('수정 완료!');
+            location.href = "/"
+        })
+    })
+</script>
+
+{{>layout/footer}}

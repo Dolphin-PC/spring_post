@@ -15,7 +15,13 @@ spring:
   jpa:
     open-in-view: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate.format_sql: true
+
+# 스프링버전 mustache 한글 깨짐 이슈
+server:
+  servlet:
+    encoding:
+      force-response: true

@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,9 +23,10 @@ public class PostService {
         return postRepository.save(requestDto.toEntity()).getId();
     }
 
+    @Transactional
     public Long update(Long id, PostUpdateReqDto reqDto) {
         Post post = postRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id="+"id"));
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id="+id));
 
         post.update(reqDto.getTitle(), reqDto.getContent());
 
@@ -37,4 +39,14 @@ public class PostService {
 
         return new PostResDto(post);
     }
+
+    public void deleteById(Long id) {
+        postRepository.deleteById(id);
+    }
+
+    public List<Post> findAll() {
+        return postRepository.findAll();
+    }
+
+
 }
