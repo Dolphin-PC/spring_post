@@ -7,6 +7,8 @@ import com.dolphin.spring_post.Dto.PostSaveReqDto;
 import com.dolphin.spring_post.Dto.PostUpdateReqDto;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,13 +42,12 @@ public class PostService {
         return new PostResDto(post);
     }
 
+    @Transactional
     public void deleteById(Long id) {
         postRepository.deleteById(id);
     }
 
-    public List<Post> findAll() {
-        return postRepository.findAll();
+    public Page<Post> findAll(Pageable pageable) {
+        return postRepository.findAll(pageable);
     }
-
-
 }

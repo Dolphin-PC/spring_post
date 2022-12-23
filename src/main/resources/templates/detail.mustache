@@ -4,17 +4,17 @@
     <h1>게시글 상세</h1>
 
     <div class="col-12">
-        <label for="title">제목</label>
-        <input type="text" id="title" value="{{post.title}}">
+        <label class="control-label" for="title">제목</label>
+        <input class="form-control" type="text" id="title" value="{{post.title}}">
     </div>
 
 
     <div class="col-12">
-        <label for="content">내용</label>
-        <textarea id="content" cols="30" rows="10">{{post.content}}</textarea>
+        <label class="control-label" for="content">내용</label>
+        <textarea class="form-control" id="content" cols="30" rows="10">{{post.content}}</textarea>
     </div>
 
-    <button id="updatePost">수정</button>
+    <button class="btn btn-primary" id="updatePost">수정</button>
 </div>
 
 <script>

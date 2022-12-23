@@ -6,6 +6,11 @@ import com.dolphin.spring_post.Dto.PostSaveReqDto;
 import com.dolphin.spring_post.Dto.PostUpdateReqDto;
 import com.dolphin.spring_post.Service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,11 +22,6 @@ import java.util.Map;
 public class PostController {
 
     private final PostService postService;
-
-    @GetMapping("/posts")
-    public List<Post> posts () {
-        return postService.findAll();
-    }
 
     @PostMapping("/post")
     public Long save(@RequestBody PostSaveReqDto requestDto) {
