@@ -1,0 +1,62 @@
+{{>layout/header}}
+
+<div class="container">
+    <h1>Spring Post</h1>
+    <table class="table" id="post-table">
+        <thead>
+        <tr>
+            <th>No</th>
+            <td>제목</td>
+            <td>내용</td>
+            <td>작성자</td>
+            <td></td>
+        </tr>
+        </thead>
+        <tbody>
+        {{#postList}}
+            <tr>
+                <th><a href="/post/{{id}}">{{id}}</a></th>
+                <td>{{title}}</td>
+                <td>{{content}}</td>
+                <td>{{author}}</td>
+                <td>
+                    <button class="btn btn-danger" name="post_del_btn" data-id="{{id}}">delete</button>
+                </td>
+            </tr>
+        {{/postList}}
+        </tbody>
+    </table>
+
+    <div class="table_footer">
+        <div style="float: right">
+            <nav aria-label="Page navigation">
+                <ul class="pagination" id="page_nav">
+                </ul>
+            </nav>
+        </div>
+
+        <div style="float:left">
+            <button class="btn btn-primary" id="btn_new">새 글 등록하기</button>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    let pageList = {{pageInfo.totalPageList}};
+    let currentPageNumber = {{pageInfo.currentPageNumber}};
+    $('#page_nav').html(
+        `
+        <li class="page-item"><a class="page-link {{^pageInfo.hasPrev}}disabled{{/pageInfo.hasPrev}}" href="?page={{pageInfo.prev}}">Previous</a></li>
+        ${pageList.map(pageNumber => {
+            let isActive = pageNumber === currentPageNumber;
+            return `<li class="page-item"><a href="?page=${pageNumber}" class="page-link ${isActive ? 'active' : ''}">${pageNumber+1}</a></li>`
+        }).join('')}
+        <li class="page-item"><a class="page-link {{^pageInfo.hasNext}}disabled{{/pageInfo.hasNext}}" href="?page={{pageInfo.next}}">Next</a></li>
+        `
+    )
+</script>
+
+<script src="/static/js/index.js"></script>
+{{>layout/footer}}
