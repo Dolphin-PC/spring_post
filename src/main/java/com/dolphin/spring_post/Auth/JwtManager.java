@@ -16,7 +16,7 @@ import java.util.Set;
 @Component
 public class JwtManager {
 
-    private final String securityKey = "spring_post";
+    private final String securityKey = "bb9daf4d-fa55-4037-ae9b-5ab6bf4db888";
     private final Long expiredTime = 1000 * 60L * 60L * 6L;
 
     public String generateJwtToken(User user) {

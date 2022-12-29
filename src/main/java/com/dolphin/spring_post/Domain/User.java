@@ -2,14 +2,13 @@ package com.dolphin.spring_post.Domain;
 
 import com.dolphin.spring_post.Enum.UserRoleType;
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.*;
 
 @Entity
 @Getter
 public class User {
 
-
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
 
@@ -18,4 +17,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRoleType userRoleType;
 
+//    @Builder
+//    public User(String userName, String password, UserRoleType userRoleType) {
+//        this.userName = userName;
+//        this.password = password;
+//        this.userRoleType = userRoleType;
+//    }
 }
